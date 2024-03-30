@@ -3,8 +3,8 @@ Mini Page Builder is a ReactJS application that allows users to build custom web
 
 Features
 Drag and drop components (Label, Input, Button) from the sidebar onto a blank canvas.
-![Photo1](https://drive.google.com/file/d/1mkhAgfjRvklZ4nrKkG1TFOf4rtSACyMD/view?usp=sharing)
 
+   <img src="https://drive.google.com/file/d/1mkhAgfjRvklZ4nrKkG1TFOf4rtSACyMD/view?usp=sharing" alt="Photo1" />
 Configure elements' properties such as X and Y coordinates.
 Save changes automatically to local storage.
 Move elements on the page to change their position.
