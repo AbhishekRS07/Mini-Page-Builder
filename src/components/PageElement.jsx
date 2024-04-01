@@ -35,6 +35,7 @@ function PageElement({ id, x, y, type, title, style, onSelect }) {
       <button className="delete-btn" onClick={handleDelete}>
         X
       </button>
+   
     </div>
   );
 }

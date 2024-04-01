@@ -9,6 +9,7 @@ function App() {
   const [selectedElement, setSelectedElement] = useState(null);
   const [configModalOpen, setConfigModalOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [newElementAdded, setNewElementAdded] = useState(false);
 
   useEffect(() => {
     const savedElements = JSON.parse(localStorage.getItem("elements"));
@@ -67,6 +68,7 @@ function App() {
     }
 
     setElements([...elements, newElement]);
+    setNewElementAdded(true); // Set the flag to true when a new element is added
   };
 
   const handleElementSelect = (id) => {
@@ -94,6 +96,7 @@ function App() {
     });
 
     setElements(updatedElements);
+    setNewElementAdded(false); // Reset the flag when the config is saved
 
     localStorage.setItem("elements", JSON.stringify(updatedElements));
   };
@@ -136,15 +139,26 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (newElementAdded) {
+      setConfigModalOpen(true); // Open the ConfigModal when a new element is added
+    }
+  }, [newElementAdded]);
+
   return (
     <div className="app" onKeyDown={handleKeyDown} tabIndex="0">
       <div className="sidebar">
-        <h2 style={{color:"whitesmoke"}}>BLOCKS</h2>
+        <h2 style={{ color: "whitesmoke" }}>BLOCKS</h2>
         <SidebarItem type="Label" />
         <SidebarItem type="Input" />
         <SidebarItem type="Button" />
       </div>
-      <div className="page" onDragOver={handleDragOver} onDrop={handleDrop}>
+      <div
+        className="page"
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onClick={() => setConfigModalOpen(false)} // Close the ConfigModal on click outside
+      >
         {elements.map((element) => (
           <PageElement
             key={element.id}
