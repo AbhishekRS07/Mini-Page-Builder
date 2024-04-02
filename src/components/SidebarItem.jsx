@@ -1,12 +1,13 @@
 import React from 'react';
-import "../App.css"
-function SidebarItem({ type }) {
+
+function SidebarItem({ type, icon }) {
   const handleDragStart = (e) => {
     e.dataTransfer.setData('type', type);
   };
 
   return (
     <div className="sidebar-item" draggable onDragStart={handleDragStart}>
+      {icon}
       {type}
     </div>
   );

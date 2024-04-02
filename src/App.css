@@ -1,10 +1,11 @@
 .app {
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  /* flex-direction: row; /* */
   box-sizing: border-box;
-  flex-direction: column;
   font-family: Arial, sans-serif;
-  
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -14,14 +15,14 @@
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
-  background-color: black;
+  background-color: rgb(6, 0, 0);
 }
 
 .sidebar-item {
   margin-bottom: 10px;
   padding: 10px;
   width: 90%;
-  background-color: #d7d3d3;
+  background-color: #fefbfb;
   cursor: pointer;
 }
 
@@ -29,7 +30,9 @@
   flex: 1;
   position: relative;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 5px dotted rgba(107, 106, 106, 0.865);
+  
+
 }
 
 .page-element {
@@ -106,41 +109,32 @@
 }
 
 .export {
-  height: 50px;
+  height: 40px;
   border-radius: 5px;
-  background-color: rgb(52, 51, 51);
-  color: whitesmoke;
+  background-color: rgb(255, 255, 255);
+  color: rgb(13, 0, 0);
 }
 
-@media screen and (min-width: 768px) {
-  .app {
-    flex-direction: row;
-    height: 100vh;
-    width: 100%;
-  }
 
-  .sidebar {
-    width: 200px;
-    
-    overflow-y: auto;
-  }
-
-  .page {
-    flex: 1;
-    overflow: auto;
-  }
-}
 
 @media screen and (max-width: 767px) {
   .app {
-    height: auto;
-  }
-  .exportParent {
-    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    height: 1000px;
   }
+  
+  .page {
+    width: 97%;
+    height: 800px;
+    position: relative;
+    background-color: #fff;
+    margin: 10px;
+    border: 5px dotted rgba(107, 106, 106, 0.865);
+  }
+
 
   .sidebar {
     width: 100%;

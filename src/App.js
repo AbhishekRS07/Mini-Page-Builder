@@ -3,6 +3,7 @@ import "./App.css";
 import SidebarItem from "./components/SidebarItem";
 import PageElement from "./components/PageElement";
 import ConfigModal from "./components/ConfigModal";
+import { FaFont, FaKeyboard, FaMouse } from "react-icons/fa";
 
 function App() {
   const [elements, setElements] = useState([]);
@@ -30,7 +31,7 @@ function App() {
     e.preventDefault();
     const type = e.dataTransfer.getData("type");
     const { offsetX, offsetY } = e.nativeEvent;
-
+  
     let newElement;
     switch (type) {
       case "Label":
@@ -40,7 +41,11 @@ function App() {
           y: offsetY,
           type: "Label",
           title: "Label",
-          style: {},
+          style: {
+            fontSize: '16px',  // Initial font size
+            fontWeight: 'normal',  // Initial font weight
+            // Add other initial style properties as needed
+          },
         };
         break;
       case "Input":
@@ -50,7 +55,9 @@ function App() {
           y: offsetY,
           type: "Input",
           title: "Input",
-          style: {},
+          style: {
+           
+          },
         };
         break;
       case "Button":
@@ -60,16 +67,20 @@ function App() {
           y: offsetY,
           type: "Button",
           title: "Button",
-          style: {},
+          style: {
+         
+          },
         };
         break;
       default:
         break;
     }
-
+  
     setElements([...elements, newElement]);
-    setNewElementAdded(true); // Set the flag to true when a new element is added
+    setSelectedElement(newElement.id);
+    setNewElementAdded(true); 
   };
+  
 
   const handleElementSelect = (id) => {
     setSelectedElement(id);
@@ -141,23 +152,26 @@ function App() {
 
   useEffect(() => {
     if (newElementAdded) {
-      setConfigModalOpen(true); // Open the ConfigModal when a new element is added
+      setConfigModalOpen(true); 
     }
-  }, [newElementAdded]);
+  }, [newElementAdded,elements]);
 
   return (
     <div className="app" onKeyDown={handleKeyDown} tabIndex="0">
       <div className="sidebar">
         <h2 style={{ color: "whitesmoke" }}>BLOCKS</h2>
-        <SidebarItem type="Label" />
-        <SidebarItem type="Input" />
-        <SidebarItem type="Button" />
+        <SidebarItem type="Label" icon={<FaFont />} />
+        <SidebarItem type="Input" icon={<FaKeyboard />} />
+        <SidebarItem type="Button" icon={<FaMouse />} />
+        <button className="export" onClick={handleExport}>
+          Export Page
+        </button>
       </div>
       <div
         className="page"
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        onClick={() => setConfigModalOpen(false)} // Close the ConfigModal on click outside
+        onClick={() => setConfigModalOpen(false)} 
       >
         {elements.map((element) => (
           <PageElement
@@ -179,11 +193,6 @@ function App() {
         x={mousePosition.x}
         y={mousePosition.y}
       />
-      <div className="exportParent">
-        <button className="export" onClick={handleExport}>
-          Export Page
-        </button>
-      </div>
     </div>
   );
 }
