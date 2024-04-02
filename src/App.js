@@ -31,7 +31,7 @@ function App() {
     e.preventDefault();
     const type = e.dataTransfer.getData("type");
     const { offsetX, offsetY } = e.nativeEvent;
-  
+
     let newElement;
     switch (type) {
       case "Label":
@@ -42,9 +42,8 @@ function App() {
           type: "Label",
           title: "Label",
           style: {
-            fontSize: '16px',  // Initial font size
-            fontWeight: 'normal',  // Initial font weight
-            // Add other initial style properties as needed
+            fontSize: "16px",
+            fontWeight: "normal",
           },
         };
         break;
@@ -55,9 +54,7 @@ function App() {
           y: offsetY,
           type: "Input",
           title: "Input",
-          style: {
-           
-          },
+          style: {},
         };
         break;
       case "Button":
@@ -67,20 +64,17 @@ function App() {
           y: offsetY,
           type: "Button",
           title: "Button",
-          style: {
-         
-          },
+          style: {},
         };
         break;
       default:
         break;
     }
-  
+
     setElements([...elements, newElement]);
     setSelectedElement(newElement.id);
-    setNewElementAdded(true); 
+    setNewElementAdded(true);
   };
-  
 
   const handleElementSelect = (id) => {
     setSelectedElement(id);
@@ -107,7 +101,7 @@ function App() {
     });
 
     setElements(updatedElements);
-    setNewElementAdded(false); // Reset the flag when the config is saved
+    setNewElementAdded(false);
 
     localStorage.setItem("elements", JSON.stringify(updatedElements));
   };
@@ -152,9 +146,9 @@ function App() {
 
   useEffect(() => {
     if (newElementAdded) {
-      setConfigModalOpen(true); 
+      setConfigModalOpen(true);
     }
-  }, [newElementAdded,elements]);
+  }, [newElementAdded, elements]);
 
   return (
     <div className="app" onKeyDown={handleKeyDown} tabIndex="0">
@@ -171,7 +165,7 @@ function App() {
         className="page"
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        onClick={() => setConfigModalOpen(false)} 
+        onClick={() => setConfigModalOpen(false)}
       >
         {elements.map((element) => (
           <PageElement
